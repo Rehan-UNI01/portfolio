@@ -8,33 +8,32 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Sonny Boy inspired pastel palette
+        // Sonny Boy Anime Aesthetic Palette
         sonny: {
-          bg: '#FAF8F5',          // Warm paper canvas
-          canvas: '#F4F0EA',      // Secondary warm paper
-          card: 'rgba(255, 255, 255, 0.85)',
-          sky: '#93C5FD',         // Washed summer sky blue
-          skyDeep: '#60A5FA',
-          cerulean: '#38BDF8',
-          peach: '#FDBA74',       // Sunlit summer peach / apricot
-          coral: '#FCA5A5',       // Soft washed coral
-          lavender: '#DDD6FE',    // Twilight nostalgia dusk
-          purple: '#C4B5FD',
-          mint: '#86EFAC',        // Summer grassland green
-          sage: '#A7F3D0',
-          butter: '#FEF08A',      // Sunlight warmth
-          sand: '#FDE68A',
-          ink: '#1E2430',         // Deep editorial ink
-          inkMuted: '#475569',    // Soft pencil gray
-          inkFaint: '#94A3B8',    // Very soft text
-          border: 'rgba(30, 36, 48, 0.08)',
-          borderHover: 'rgba(99, 102, 241, 0.25)',
+          sky: '#1A66FF',
+          skyVivid: '#00A3FF',
+          skyLight: '#38BDF8',
+          turquoise: '#00CC99',
+          crimson: '#FF3B30',
+          paper: '#F5F4F0',
+          paperLight: '#FFFDF7',
+          paperWarm: '#FAF7EE',
+          ink: '#0D0F12',
+          black: '#000000',
+          yellow: '#FFD026',
+          amber: '#F59E0B',
+          muted: '#525B6A',
+          halftone: 'rgba(13, 15, 18, 0.18)',
         },
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        title: ['"Dela Gothic One"', 'cursive'],
+        marker: ['"Permanent Marker"', 'cursive'],
+        sketch: ['"Patrick Hand"', '"Gaegu"', 'cursive'],
+        hand: ['"Gaegu"', '"Patrick Hand"', 'cursive'],
         mono: ['"JetBrains Mono"', 'monospace'],
-        display: ['"Space Grotesk"', '"Plus Jakarta Sans"', 'sans-serif'],
+        display: ['"Space Grotesk"', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
       animation: {
         'float-slow': 'float 6s ease-in-out infinite',

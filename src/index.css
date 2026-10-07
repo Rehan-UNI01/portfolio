@@ -3,76 +3,135 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-    background-color: #FAF8F5;
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #00A3FF;
+    color: #0D0F12;
+    user-select: none;
+    -webkit-user-select: none;
+    font-family: "Space Grotesk", sans-serif;
   }
-  
-  /* Minimalist pastel scrollbar */
+
+  /* Custom indie scrollbar */
   ::-webkit-scrollbar {
-    width: 9px;
+    width: 8px;
+    height: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #FAF8F5;
+    background: #0082D9;
   }
   ::-webkit-scrollbar-thumb {
-    background: #E2E8F0;
-    border-radius: 9999px;
-    border: 3px solid #FAF8F5;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #CBD5E1;
+    background: #0D0F12;
+    border: 2px solid #FFFDF7;
+    border-radius: 4px;
   }
 }
 
 @layer utilities {
-  /* Sonny Boy inspired painterly typography */
-  .text-pastel-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-orange-500;
+  /* Hand-inked borders and cel shadows */
+  .sketch-box {
+    border: 3px solid #000000;
+    background: #FFFDF7;
+    box-shadow: 5px 6px 0px #000000;
+    border-radius: 6px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
   
-  .text-pastel-sky {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-sky-600 to-indigo-600;
+  .sketch-box:hover {
+    box-shadow: 6px 8px 0px #000000;
   }
 
-  .text-pastel-peach {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-amber-500;
+  .sketch-box-sm {
+    border: 2.5px solid #000000;
+    background: #FFFDF7;
+    box-shadow: 3px 4px 0px #000000;
+    border-radius: 5px;
   }
 
-  .text-pastel-lavender {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-500;
+  .sketch-btn {
+    border: 2.5px solid #000000;
+    box-shadow: 3px 3.5px 0px #000000;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    cursor: pointer;
   }
 
-  /* Frosted warm paper card */
-  .sonny-card {
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(226, 232, 240, 0.85);
-    box-shadow: 0 4px 20px -2px rgba(100, 116, 139, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+  .sketch-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4.5px 0px #000000;
   }
 
-  .sonny-card-hover {
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  .sketch-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1.5px 0px #000000;
   }
 
-  .sonny-card-hover:hover {
-    transform: translateY(-4px);
-    background: rgba(255, 255, 255, 0.98);
-    border-color: rgba(147, 197, 253, 0.6);
-    box-shadow: 0 16px 36px -6px rgba(147, 197, 253, 0.25), 0 6px 14px -3px rgba(0, 0, 0, 0.04);
+  /* Halftone Screentone Patterns */
+  .halftone-cyan {
+    background-color: #00A3FF;
+    background-image: radial-gradient(#0D0F12 1.5px, transparent 1.5px);
+    background-size: 8px 8px;
   }
 
-  .sonny-nav {
-    background: rgba(250, 248, 245, 0.88);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  .halftone-cloud {
+    background-color: #FFFFFF;
+    background-image: radial-gradient(#1E293B 1.2px, transparent 1.2px);
+    background-size: 6px 6px;
+  }
+
+  .halftone-dots {
+    background-image: radial-gradient(rgba(13, 15, 18, 0.28) 1.5px, transparent 1.5px);
+    background-size: 10px 10px;
+  }
+
+  .halftone-dense {
+    background-image: radial-gradient(rgba(13, 15, 18, 0.45) 1.8px, transparent 1.8px);
+    background-size: 7px 7px;
+  }
+
+  /* Jitter / Shake on hover */
+  .sketch-shake:hover {
+    animation: jitter 0.22s infinite alternate;
   }
 }
 
-/* Subtle summer sky canvas grid pattern */
-.bg-sonny-dots {
-  background-image: radial-gradient(rgba(148, 163, 184, 0.22) 1.2px, transparent 0);
-  background-size: 32px 32px;
+@keyframes jitter {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-1.5px, 1px) rotate(-0.5deg); }
+  50% { transform: translate(1px, -1.5px) rotate(0.6deg); }
+  75% { transform: translate(-1px, -0.5px) rotate(-0.4deg); }
+  100% { transform: translate(1.5px, 1px) rotate(0.5deg); }
+}
+
+@keyframes windSway {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(1.2deg); }
+}
+
+@keyframes planeGlide {
+  0%, 100% { transform: translate(0, 0) rotate(-2deg); }
+  50% { transform: translate(12px, -8px) rotate(3deg); }
+}
+
+/* Film grain overlay */
+.film-grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.055;
+  z-index: 999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Subtle scanline effect */
+.scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.08) 50%
+  );
+  background-size: 100% 4px;
 }

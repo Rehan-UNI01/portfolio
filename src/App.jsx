@@ -1,76 +1,105 @@
-import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Education from './components/Education';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Achievements from './components/Achievements';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import React, { useState, useEffect, useCallback } from 'react';
+import SonnyScene from './components/SonnyScene';
+import HeaderNav from './components/HeaderNav';
+import InspectModal from './components/InspectModal';
+import RunSimulationModal from './components/RunSimulationModal';
+import AboutModal from './components/AboutModal';
 
 export default function App() {
-  const [activeSection, setActiveSection] = useState('hero');
+  const [zeroGEnabled, setZeroGEnabled] = useState(true);
+  const [inspectProject, setInspectProject] = useState(null);
+  const [runProject, setRunProject] = useState(null);
+  const [showAbout, setShowAbout] = useState(false);
+  const [scatterTrigger, setScatterTrigger] = useState(0);
+  const [recallTrigger, setRecallTrigger] = useState(0);
 
+  const handleInspect = useCallback((project) => {
+    setInspectProject(project);
+  }, []);
+
+  const handleRun = useCallback((project) => {
+    setRunProject(project);
+  }, []);
+
+  const handleOpenAbout = useCallback(() => {
+    setShowAbout(true);
+  }, []);
+
+  const handleScatter = useCallback(() => {
+    setScatterTrigger((prev) => prev + 1);
+  }, []);
+
+  const handleRecall = useCallback(() => {
+    setRecallTrigger((prev) => prev + 1);
+  }, []);
+
+  const handleToggleZeroG = useCallback(() => {
+    setZeroGEnabled((prev) => !prev);
+  }, []);
+
+  const handleFocusContact = useCallback(() => {
+    // Just recall everything to default positions so contact is visible
+    setRecallTrigger((prev) => prev + 1);
+  }, []);
+
+  // Escape key closes modals
   useEffect(() => {
-    const sections = ['hero', 'about', 'education', 'skills', 'projects', 'achievements', 'contact'];
-
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 200;
-
-      for (const sectionId of sections) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const top = element.offsetTop;
-          const height = element.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(sectionId);
-            break;
-          }
-        }
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        setInspectProject(null);
+        setRunProject(null);
+        setShowAbout(false);
       }
     };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] text-[#1E2430] flex flex-col relative overflow-hidden font-sans">
-      {/* Subtle Sonny Boy Dot Texture */}
-      <div className="fixed inset-0 bg-sonny-dots opacity-60 pointer-events-none -z-20" />
+    <div className="w-screen h-screen overflow-hidden relative">
+      {/* Film Grain Overlay */}
+      <div className="film-grain-overlay" />
 
-      {/* Dreamy Pastel Atmospheric Orbs */}
-      <div className="fixed top-0 left-1/4 w-[600px] h-[450px] bg-gradient-to-br from-blue-200/45 via-indigo-100/35 to-transparent blur-[130px] rounded-full pointer-events-none -z-10 animate-float-slow" />
-      <div className="fixed top-1/3 right-10 w-[550px] h-[500px] bg-gradient-to-bl from-orange-200/40 via-amber-100/30 to-transparent blur-[140px] rounded-full pointer-events-none -z-10 animate-float-delayed" />
-      <div className="fixed bottom-1/4 left-10 w-[500px] h-[500px] bg-gradient-to-tr from-purple-200/35 via-pink-100/25 to-emerald-100/30 blur-[130px] rounded-full pointer-events-none -z-10" />
+      {/* Header Navigation */}
+      <HeaderNav
+        onOpenAbout={handleOpenAbout}
+        onOpenProjects={() => {}}
+        onFocusContact={handleFocusContact}
+        zeroGEnabled={zeroGEnabled}
+        onToggleZeroG={handleToggleZeroG}
+        onScatter={handleScatter}
+        onResetPositions={handleRecall}
+      />
 
-      {/* Accessible Skip Link */}
-      <a
-        href="#hero"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-blue-600 text-white rounded-lg shadow-lg font-semibold"
-      >
-        Skip to main content
-      </a>
+      {/* Main Anti-Gravity Physics Scene */}
+      <SonnyScene
+        onInspectProject={handleInspect}
+        onRunProject={handleRun}
+        zeroGEnabled={zeroGEnabled}
+        scatterTrigger={scatterTrigger}
+        recallTrigger={recallTrigger}
+        onOpenAbout={handleOpenAbout}
+      />
 
-      {/* Sticky Pastel Navbar */}
-      <Navbar activeSection={activeSection} />
+      {/* Modals */}
+      {inspectProject && (
+        <InspectModal
+          project={inspectProject}
+          onClose={() => setInspectProject(null)}
+          onRunFromModal={handleRun}
+        />
+      )}
 
-      {/* Main Content Sections */}
-      <main className="flex-grow">
-        <Hero />
-        <About />
-        <Education />
-        <Skills />
-        <Projects />
-        <Achievements />
-        <Contact />
-      </main>
+      {runProject && (
+        <RunSimulationModal
+          project={runProject}
+          onClose={() => setRunProject(null)}
+        />
+      )}
 
-      {/* Aesthetic Footer */}
-      <Footer />
+      {showAbout && (
+        <AboutModal onClose={() => setShowAbout(false)} />
+      )}
     </div>
   );
 }
