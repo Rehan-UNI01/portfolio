@@ -1,29 +1,914 @@
-<!doctype html>
-<html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#FAF8F5" />
-    <meta name="description" content="Mohammad Rehan - 1st Year B.Tech CSE Student at JECRC University, Jaipur. Building programming fundamentals in C, exploring AI, cybersecurity, and Japanese culture." />
-    <meta name="author" content="Mohammad Rehan" />
-    <meta property="og:title" content="Mohammad Rehan | Portfolio" />
-    <meta property="og:description" content="1st Year B.Tech CSE Student | JECRC University, Jaipur" />
-    <meta property="og:type" content="website" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MOHAMMAD REHAN // 漂流 LOG - Sonny Boy Anti-Gravity Portfolio</title>
+  
+  <!-- Google Fonts: Dela Gothic One for Title Cards, Space Grotesk for Body/Tech, Zen Maru Gothic & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=JetBrains+Mono:ital,wght@0,300;0,500;0,700;1,400&family=Space+Grotesk:wght@400;600;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+
+  <!-- Matter.js Physics Engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="drift-mode">
+
+  <!-- SVG Filters for Hand-Drawn Ink Wobble Effect -->
+  <svg class="svg-filters" aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;">
+    <defs>
+      <filter id="hand-drawn" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="subtle-sketch" x="-2%" y="-2%" width="104%" height="104%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.4" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Retro Film Grain & Halftone Dot Overlays -->
+  <div class="overlay-film-grain" aria-hidden="true"></div>
+  <div class="overlay-halftone" aria-hidden="true"></div>
+  <div class="overlay-scanlines" aria-hidden="true"></div>
+  <div class="overlay-vignette" aria-hidden="true"></div>
+
+  <!-- Dynamic SVG Wire Canvas (Tethered Power Lines connecting floating elements) -->
+  <svg id="wire-canvas" class="wire-canvas" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+
+  <!-- Background Sky & Celestial Environment -->
+  <div class="sky-scenery" id="sky-scenery">
+    <div class="sky-gradient"></div>
+    <div class="sun-orb"></div>
     
-    <!-- Google Fonts: Sonny Boy Indie Anime Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Patrick+Hand&family=Gaegu:wght@400;700&family=Permanent+Marker&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
-    <title>Nagara's Dev Log | Mohammad Rehan Portfolio</title>
-  </head>
-  <body class="bg-[#FAF8F5] text-[#1E2430] font-sans antialiased selection:bg-[#FDBA74]/40 selection:text-[#1E2430] overflow-x-hidden min-h-screen">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-    
-    <!-- Botpress Webchat Embed -->
-    <script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
-    <script src="https://files.bpcontent.cloud/2026/10/06/10/20261006104548-PZQ3CFID.js" defer></script>
-  </body>
+    <!-- Horizon Silhouette: School Roof Wire Fence & Utility Poles -->
+    <div class="silhouette-horizon">
+      <svg class="horizon-svg" viewBox="0 0 1440 320" preserveAspectRatio="none" fill="currentColor">
+        <!-- School rooftop fence & water tank silhouette -->
+        <path d="M0,280 L0,220 L40,220 L40,240 L160,240 L160,200 L220,200 L220,280 L350,280 L350,170 L410,170 L410,280 L600,280 L600,230 L720,230 L720,280 L950,280 L950,190 L1020,190 L1020,280 L1200,280 L1200,220 L1280,220 L1280,280 L1440,280 L1440,320 L0,320 Z" />
+        <!-- Chainlink fence cross-hatch bar -->
+        <rect x="0" y="276" width="1440" height="4" fill="#0D0F12" />
+        <rect x="0" y="260" width="1440" height="2" fill="#0D0F12" />
+      </svg>
+    </div>
+
+    <!-- Hand-Drawn Clouds -->
+    <div class="cloud cloud-1" data-speed="0.2">
+      <svg viewBox="0 0 200 90" fill="#FFFFFF" stroke="#000000" stroke-width="3">
+        <path d="M20,65 C10,65 5,55 10,45 C15,35 30,35 40,40 C45,25 65,15 85,25 C95,10 125,10 140,25 C155,20 175,28 175,42 C188,48 188,62 175,65 Z" />
+      </svg>
+    </div>
+    <div class="cloud cloud-2" data-speed="0.35">
+      <svg viewBox="0 0 240 100" fill="#FFFFFF" stroke="#000000" stroke-width="3">
+        <path d="M25,70 C10,70 5,58 15,48 C20,38 35,38 45,45 C55,25 80,18 105,28 C120,12 155,14 170,30 C190,26 215,35 215,52 C230,58 228,70 215,70 Z" />
+      </svg>
+    </div>
+    <div class="cloud cloud-3" data-speed="0.15">
+      <svg viewBox="0 0 180 80" fill="#FFFFFF" stroke="#000000" stroke-width="3">
+        <path d="M20,60 C8,60 5,48 15,40 C20,30 38,30 46,36 C55,20 75,15 95,22 C110,10 135,12 145,26 C160,24 172,32 170,48 C178,54 175,60 160,60 Z" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- HUD Header: Episode Broadcast Banner & Floating World Rules -->
+  <header class="anime-hud-header">
+    <div class="hud-left">
+      <div class="stamp-badge">EPISODE 01 // 漂流開始</div>
+      <div class="rec-indicator">
+        <span class="rec-dot"></span> REC <span class="time-code" id="time-code">00:00:00:00</span>
+      </div>
+    </div>
+
+    <!-- Center Dimension Navigator / Quick Anchors -->
+    <nav class="hud-nav" aria-label="Dimension Navigation">
+      <button class="nav-chip active" data-target="hero">01. CLASSROOM</button>
+      <button class="nav-chip" data-target="skills">02. APTITUDES</button>
+      <button class="nav-chip" data-target="projects">03. PARALLEL WORLDS</button>
+      <button class="nav-chip" data-target="contact">04. TRANSMITTER</button>
+    </nav>
+
+    <div class="hud-right">
+      <!-- Tape Cassette Ambient Audio Player -->
+      <button id="audio-toggle-btn" class="hud-tool-btn audio-btn" title="Toggle Lo-Fi Sonny Boy Soundtrack">
+        <span class="cassette-icon">📼</span>
+        <span class="audio-label">OST: "SUMMER DRIFT"</span>
+        <div class="audio-equalizer" id="equalizer">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </button>
+
+      <!-- Student Council World Rule Switcher -->
+      <div class="council-rules-dropdown">
+        <button id="rule-btn" class="hud-tool-btn rule-btn" title="Alter Dimension Physics">
+          <span class="rule-icon">⚖️</span>
+          <span class="rule-text">STUDENT COUNCIL RULES</span>
+        </button>
+        <div class="rules-menu" id="rules-menu">
+          <div class="rules-header">DIMENSION LAWS [生徒会規則]</div>
+          <button class="rule-opt active" data-rule="zero-g">
+            <span class="opt-bullet">●</span> RULE 1: ZERO-G DRIFT (Current)
+          </button>
+          <button class="rule-opt" data-rule="earth-g">
+            <span class="opt-bullet">○</span> RULE 2: RESTORE EARTH GRAVITY
+          </button>
+          <button class="rule-opt" data-rule="super-drift">
+            <span class="opt-bullet">○</span> RULE 3: SOLAR STORM (Turbulence)
+          </button>
+          <button class="rule-opt" data-rule="blackout">
+            <span class="opt-bullet">○</span> RULE 4: MIDNIGHT VOID (Ink World)
+          </button>
+          <div class="rule-divider"></div>
+          <button class="rule-opt-action" id="reset-physics-btn">
+            ↺ RE-ANCHOR ALL OBJECTS
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Interactive Floating Hint Pill -->
+  <div class="physics-hint-pill">
+    <span class="hand-icon">✋</span>
+    <span>CLICK &amp; FLING ANY CARD OR DEBRIS • ZERO GRAVITY ACTIVE</span>
+  </div>
+
+  <!-- MAIN SCROLLABLE / DRIFTABLE WORKSPACE -->
+  <main class="portfolio-container" id="physics-container">
+
+    <!-- ========================================================
+         SECTION 1: HERO // THE DRIFTING CLASSROOM
+         ======================================================== -->
+    <section class="dimension-section section-hero" id="section-hero">
+      
+      <!-- Matter.js Physics Element: Utility Pole Asset -->
+      <div class="physics-item pole-asset" id="pole-hero" data-mass="15" data-restitution="0.8">
+        <svg viewBox="0 0 120 380" fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round">
+          <!-- Main wooden/concrete pole shaft -->
+          <line x1="60" y1="20" x2="60" y2="380" stroke-width="8" stroke="#1A1C20" />
+          <!-- Cross arm 1 -->
+          <line x1="15" y1="60" x2="105" y2="60" stroke-width="5" stroke="#1A1C20" />
+          <circle cx="20" cy="50" r="5" fill="#FAF8F2" stroke="#000" stroke-width="2" />
+          <circle cx="60" cy="50" r="5" fill="#FAF8F2" stroke="#000" stroke-width="2" />
+          <circle cx="100" cy="50" r="5" fill="#FAF8F2" stroke="#000" stroke-width="2" />
+          <!-- Cross arm 2 -->
+          <line x1="25" y1="120" x2="95" y2="120" stroke-width="5" stroke="#1A1C20" />
+          <circle cx="30" cy="110" r="5" fill="#FAF8F2" stroke="#000" stroke-width="2" />
+          <circle cx="90" cy="110" r="5" fill="#FAF8F2" stroke="#000" stroke-width="2" />
+          <!-- Transformer cylinder -->
+          <rect x="68" y="140" width="35" height="50" rx="3" fill="#00CC99" stroke="#000" stroke-width="3" />
+          <line x1="72" y1="155" x2="98" y2="155" stroke="#000" stroke-width="2" />
+          <line x1="72" y1="170" x2="98" y2="170" stroke="#000" stroke-width="2" />
+          <!-- Warning Red Lamp -->
+          <circle cx="60" cy="15" r="8" fill="#FF3B30" stroke="#000" stroke-width="3" class="blinking-beacon" />
+        </svg>
+      </div>
+
+      <!-- Hero Main Title Card (Physics Active) -->
+      <div class="physics-item title-card-card" id="hero-title-card" data-mass="12" data-restitution="0.6">
+        <div class="sketch-pin pin-tl"></div>
+        <div class="sketch-pin pin-tr"></div>
+        <div class="card-inner-tape">STATION 36 // CLASSROOM 3-A</div>
+        
+        <div class="title-header-group">
+          <div class="title-eyebrow">
+            <span class="kanji-watermark">漂流記</span>
+            <span class="badge-status">STATUS: EXILED IN VOID</span>
+            <span class="badge-role">SOFTWARE ENGINEER</span>
+          </div>
+          
+          <h1 class="anime-main-title">
+            MOHAMMAD<br>
+            <span class="accent-sky">REHAN</span><span class="cursor-blink">_</span>
+          </h1>
+          <div class="title-japanese-sub">モハマド・レハン // システム開発者</div>
+        </div>
+
+        <p class="hero-manifesto">
+          "The classroom drifted away into a world with no boundaries, no horizon, and zero gravity."
+          <br><br>
+          I build high-throughput systems, resilient backend engines, and surreal interactive digital experiences. Navigating distributed architectures like a student adrift in parallel dimensions.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#section-projects" class="action-btn btn-primary" id="btn-enter-void">
+            <span class="btn-text">ENTER VOID // EXPLORE WORK</span>
+            <span class="btn-arrow">→</span>
+          </a>
+          <button class="action-btn btn-secondary" id="btn-resume-modal">
+            <span class="btn-icon">📄</span>
+            <span class="btn-text">STUDENT_DOSSIER.PDF</span>
+          </button>
+        </div>
+
+        <div class="card-corner-stamp">
+          NO. 00-244
+        </div>
+      </div>
+
+      <!-- Physics Item: Drifting School Chair -->
+      <div class="physics-item school-chair-asset" id="chair-hero" data-mass="6" data-restitution="0.75" title="Tossable Classroom Chair">
+        <svg viewBox="0 0 100 130" fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Backrest -->
+          <rect x="25" y="15" width="50" height="25" rx="3" fill="#FAF8F2" stroke="#000" stroke-width="3" />
+          <line x1="30" y1="27" x2="70" y2="27" stroke="#000" stroke-width="1.5" />
+          <!-- Back frame rods -->
+          <line x1="35" y1="40" x2="35" y2="70" stroke-width="3" />
+          <line x1="65" y1="40" x2="65" y2="70" stroke-width="3" />
+          <!-- Seat -->
+          <polygon points="20,70 80,70 75,85 25,85" fill="#00CC99" stroke="#000" stroke-width="3" />
+          <!-- Legs -->
+          <line x1="26" y1="85" x2="18" y2="125" stroke-width="3" />
+          <line x1="74" y1="85" x2="82" y2="125" stroke-width="3" />
+          <line x1="32" y1="85" x2="28" y2="120" stroke-width="2.5" />
+          <line x1="68" y1="85" x2="72" y2="120" stroke-width="2.5" />
+          <!-- Rungs -->
+          <line x1="22" y1="105" x2="78" y2="105" stroke-width="2" />
+        </svg>
+      </div>
+
+      <!-- Physics Item: Interactive Paper Airplane (Darting with mouse) -->
+      <div class="physics-item paper-plane-asset" id="paper-plane" data-mass="2" data-restitution="0.9" title="Paper Airplane (Fling me!)">
+        <svg viewBox="0 0 90 60" fill="none" stroke="#000000" stroke-width="3" stroke-linejoin="round">
+          <polygon points="10,30 85,10 55,50" fill="#FAF8F2" stroke="#000" stroke-width="3" />
+          <polygon points="10,30 85,10 40,32" fill="#00A3FF" stroke="#000" stroke-width="2" />
+          <line x1="10" y1="30" x2="85" y2="10" stroke="#000" stroke-width="3" />
+          <line x1="40" y1="32" x2="40" y2="44" stroke="#000" stroke-width="2" />
+        </svg>
+      </div>
+
+      <!-- Physics Item: Drifting Terminal Capsule -->
+      <div class="physics-item terminal-capsule" id="hero-terminal" data-mass="8" data-restitution="0.7">
+        <div class="terminal-bar">
+          <span class="term-dot red"></span>
+          <span class="term-dot yellow"></span>
+          <span class="term-dot green"></span>
+          <span class="term-title">tty0/sonny-telemetry</span>
+        </div>
+        <div class="terminal-body font-mono">
+          <div class="line"><span class="t-prompt">$</span> ping -c 1 home.earth</div>
+          <div class="line t-dim">PING 127.0.0.1: Destination unreachable (Dimensions apart).</div>
+          <div class="line"><span class="t-prompt">$</span> echo $DRIFT_SPEED</div>
+          <div class="line t-green">9.80665 m/s² [INVERTED]</div>
+          <div class="line"><span class="t-prompt">$</span> cat /proc/engineer</div>
+          <div class="line t-cyan">Rehan :: C++ | Python | FullStack | Low-Latency</div>
+        </div>
+      </div>
+
+      <!-- Drifting Code Snippet Shards -->
+      <div class="physics-item code-shard shard-1" id="shard-1" data-mass="3">
+        <code>std::unique_ptr&lt;Reality&gt; ptr;</code>
+      </div>
+      <div class="physics-item code-shard shard-2" id="shard-2" data-mass="3">
+        <code>while(isDrifting) { yield(); }</code>
+      </div>
+
+    </section>
+
+    <!-- ========================================================
+         SECTION 2: ABOUT & DRIFTING TECH (THE SKILLS DEBRIS)
+         ======================================================== -->
+    <section class="dimension-section section-skills" id="section-skills">
+      
+      <div class="section-badge-stamp">
+        <span class="stamp-box">ZONE 02</span>
+        <h2>THE APTITUDES DEBRIS // 能力・技術遺物</h2>
+        <p class="section-instruction">Grab and toss any drifting skill tag. They collide with realistic momentum.</p>
+      </div>
+
+      <!-- Dossier Clipboard / Self-reflective Bio (Physics Active) -->
+      <div class="physics-item student-dossier-card" id="bio-dossier" data-mass="14" data-restitution="0.6">
+        <div class="clipboard-clip"></div>
+        <div class="dossier-header">
+          <div class="dossier-photo-frame">
+            <!-- Hisashi Eguchi style minimalist silhouette avatar -->
+            <svg viewBox="0 0 100 100" class="avatar-svg">
+              <rect width="100" height="100" fill="#00A3FF" />
+              <!-- Face contour -->
+              <circle cx="50" cy="45" r="28" fill="#FAF8F2" stroke="#000" stroke-width="3" />
+              <!-- Anime hair sketch -->
+              <path d="M22,40 C20,18 45,10 65,15 C82,20 80,42 78,50 C74,30 65,26 50,26 C36,26 30,35 22,40 Z" fill="#0D0F12" />
+              <!-- Fringe / bangs -->
+              <path d="M30,30 L40,48 L46,32 L56,48 L62,32 L72,44" stroke="#0D0F12" stroke-width="3" fill="none" stroke-linecap="round" />
+              <!-- Eye strokes -->
+              <line x1="38" y1="46" x2="45" y2="46" stroke="#000" stroke-width="2.5" />
+              <line x1="55" y1="46" x2="62" y2="46" stroke="#000" stroke-width="2.5" />
+              <!-- Nose line -->
+              <path d="M50,47 L48,53 L51,53" stroke="#000" stroke-width="1.8" fill="none" />
+              <!-- Mouth -->
+              <line x1="46" y1="58" x2="54" y2="58" stroke="#000" stroke-width="2" />
+              <!-- Collar -->
+              <path d="M30,80 L50,95 L70,80" fill="#FAF8F2" stroke="#000" stroke-width="3" />
+              <path d="M20,98 L30,78 L70,78 L80,98 Z" fill="#1A66FF" stroke="#000" stroke-width="3" />
+            </svg>
+            <div class="photo-stamp">STUDENT #36</div>
+          </div>
+
+          <div class="dossier-meta font-mono">
+            <div><span class="lbl">NAME:</span> REHAN, MOHAMMAD</div>
+            <div><span class="lbl">SPECIALIZATION:</span> SYSTEMS &amp; FULL-STACK</div>
+            <div><span class="lbl">DISPOSITION:</span> CALM / EXPLORATORY</div>
+            <div><span class="lbl">DIMENSION PASS:</span> VERIFIED [LEVEL 4]</div>
+          </div>
+        </div>
+
+        <div class="dossier-body">
+          <h3 class="dossier-title">STUDENT OBSERVATION RECORD</h3>
+          <p>
+            When our world separated from reality, most panicked. Rehan opened a shell terminal.
+            Obsessed with the fundamental logic of computers, he builds foundational systems—from bare-metal network pipelines to responsive frontend dimensions.
+          </p>
+          <div class="quote-box">
+            "Software architecture isn't about rigid stone foundations. It's about maintaining structural stability while everything is floating around you."
+          </div>
+          
+          <div class="core-competencies">
+            <div class="comp-col">
+              <strong>CORE AXES:</strong>
+              <ul>
+                <li>High-Performance C/C++ Services</li>
+                <li>Distributed Python Microservices</li>
+                <li>Reactive JavaScript &amp; Modern UI</li>
+                <li>Relational Databases &amp; Cache Tuning</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="dossier-footer">
+          <span class="ink-stamp stamp-red">VERIFIED ADRIFT</span>
+          <span class="seal-serial">DOC // 894-SB-2026</span>
+        </div>
+      </div>
+
+      <!-- Physics Items: Drifting Skill Badges (Debris) -->
+      <div class="physics-item skill-badge badge-cpp" id="badge-cpp" data-mass="4" data-restitution="0.85">
+        <span class="badge-icon">🛠️</span>
+        <span class="badge-label">C / C++ 20</span>
+        <span class="badge-tag">SYSTEMS</span>
+      </div>
+
+      <div class="physics-item skill-badge badge-py" id="badge-py" data-mass="4" data-restitution="0.85">
+        <span class="badge-icon">🐍</span>
+        <span class="badge-label">PYTHON</span>
+        <span class="badge-tag">BACKEND</span>
+      </div>
+
+      <div class="physics-item skill-badge badge-js" id="badge-js" data-mass="4" data-restitution="0.85">
+        <span class="badge-icon">⚡</span>
+        <span class="badge-label">JAVASCRIPT / TS</span>
+        <span class="badge-tag">FULL-STACK</span>
+      </div>
+
+      <div class="physics-item skill-badge badge-sql" id="badge-sql" data-mass="4" data-restitution="0.85">
+        <span class="badge-icon">💾</span>
+        <span class="badge-label">POSTGRES &amp; SQL</span>
+        <span class="badge-tag">STORAGE</span>
+      </div>
+
+      <div class="physics-item skill-badge badge-git" id="badge-git" data-mass="4" data-restitution="0.85">
+        <span class="badge-icon">🎋</span>
+        <span class="badge-label">GIT &amp; DEPLOY</span>
+        <span class="badge-tag">VCS</span>
+      </div>
+
+      <div class="physics-item skill-badge badge-linux" id="badge-linux" data-mass="4" data-restitution="0.85">
+        <span class="badge-icon">🐧</span>
+        <span class="badge-label">LINUX KERNEL</span>
+        <span class="badge-tag">POSIX</span>
+      </div>
+
+      <div class="physics-item skill-badge badge-react" id="badge-react" data-mass="4" data-restitution="0.85">
+        <span class="badge-icon">⚛️</span>
+        <span class="badge-label">REACT &amp; WEB</span>
+        <span class="badge-tag">UI/UX</span>
+      </div>
+
+      <div class="physics-item skill-badge badge-docker" id="badge-docker" data-mass="4" data-restitution="0.85">
+        <span class="badge-icon">🐳</span>
+        <span class="badge-label">DOCKER</span>
+        <span class="badge-tag">INFRA</span>
+      </div>
+
+      <div class="physics-item skill-badge badge-webgl" id="badge-webgl" data-mass="4" data-restitution="0.85">
+        <span class="badge-icon">🎨</span>
+        <span class="badge-label">CANVAS &amp; PHYSICS</span>
+        <span class="badge-tag">MATH/GRAPHICS</span>
+      </div>
+
+      <!-- Drifting Cassette Tape Asset -->
+      <div class="physics-item cassette-tape-asset" id="cassette-asset" data-mass="5" data-restitution="0.8" title="Cassette Tape (Drifting Memory)">
+        <svg viewBox="0 0 130 80" fill="none" stroke="#000" stroke-width="3">
+          <rect x="5" y="5" width="120" height="70" rx="6" fill="#FAF8F2" stroke="#000" stroke-width="3" />
+          <polygon points="20,15 110,15 100,65 30,65" fill="#00A3FF" stroke="#000" stroke-width="2" />
+          <circle cx="45" cy="40" r="14" fill="#FFFFFF" stroke="#000" stroke-width="2.5" />
+          <circle cx="45" cy="40" r="6" fill="#0D0F12" />
+          <circle cx="85" cy="40" r="14" fill="#FFFFFF" stroke="#000" stroke-width="2.5" />
+          <circle cx="85" cy="40" r="6" fill="#0D0F12" />
+          <line x1="45" y1="54" x2="85" y2="54" stroke="#000" stroke-width="2" />
+          <text x="65" y="27" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold" text-anchor="middle" fill="#000">SIDE A // TOE - SONNY</text>
+        </svg>
+      </div>
+
+    </section>
+
+    <!-- ========================================================
+         SECTION 3: PARALLEL DIMENSIONS (PROJECT ARCHIVE)
+         ======================================================== -->
+    <section class="dimension-section section-projects" id="section-projects">
+      
+      <div class="section-badge-stamp">
+        <span class="stamp-box">ZONE 03</span>
+        <h2>PARALLEL DIMENSIONS // 制作物アーカイブ</h2>
+        <p class="section-instruction">Interactive artifact windows. Click "Inspect" for code analysis or "Run" to test execution.</p>
+      </div>
+
+      <!-- Project Grid Cluster (Physics-active cards drifting in cluster) -->
+      
+      <!-- Project 1: Dimensional Router -->
+      <article class="physics-item project-card" id="proj-router" data-mass="13" data-restitution="0.65">
+        <div class="proj-polaroid-frame">
+          <div class="proj-badge-row">
+            <span class="proj-category">ENGINE // NETWORKING</span>
+            <span class="proj-status pulse-green">● ONLINE</span>
+          </div>
+
+          <div class="proj-visual-box visual-router">
+            <!-- Simulated Packet Visualizer & Wire diagram -->
+            <div class="sim-packet-line">
+              <span class="pkt">PACKET [TCP/RAW]</span>
+              <span class="arrow">&gt;&gt;&gt;</span>
+              <span class="dst">PORT 8080 [RESOLVED]</span>
+            </div>
+            <div class="router-grid-graph">
+              <div class="node n1 active">S0</div>
+              <div class="wire-link"></div>
+              <div class="node n2 active">R1</div>
+              <div class="wire-link"></div>
+              <div class="node n3 active">D2</div>
+            </div>
+            <div class="fps-badge">LATENCY: 0.12ms</div>
+          </div>
+
+          <div class="proj-content">
+            <h3 class="proj-title">DIMENSIONAL ROUTER</h3>
+            <div class="proj-japanese-sub">高スループット非同期ルーティングエンジン</div>
+            
+            <p class="proj-desc">
+              Low-latency asynchronous event multiplexer built in modern C++20 with custom memory-mapped ring buffers and zero-copy packet dispatching across threads.
+            </p>
+
+            <div class="proj-tech-stack">
+              <span class="tech-tag">C++20</span>
+              <span class="tech-tag">epoll / kqueue</span>
+              <span class="tech-tag">Lock-Free Queue</span>
+              <span class="tech-tag">POSIX Sockets</span>
+            </div>
+
+            <div class="proj-actions">
+              <button class="proj-btn btn-inspect" data-project="router">
+                <span class="btn-icon">🔍</span> INSPECT CODE
+              </button>
+              <button class="proj-btn btn-run" data-project="router">
+                <span class="btn-icon">▶</span> RUN DEMO
+              </button>
+            </div>
+          </div>
+          
+          <div class="polaroid-caption-tape">
+            #PRJ-01 // DRIFT_ROUTER.CPP
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2: Compass CLI -->
+      <article class="physics-item project-card" id="proj-compass" data-mass="13" data-restitution="0.65">
+        <div class="proj-polaroid-frame">
+          <div class="proj-badge-row">
+            <span class="proj-category">TOOL // EXPLORATION</span>
+            <span class="proj-status pulse-cyan">● ACTIVE</span>
+          </div>
+
+          <div class="proj-visual-box visual-compass">
+            <!-- Interactive Compass Visual -->
+            <div class="compass-circle" id="compass-face">
+              <div class="compass-dial">
+                <span class="compass-n">N</span>
+                <span class="compass-e">E</span>
+                <span class="compass-s">S</span>
+                <span class="compass-w">W</span>
+                <div class="compass-needle" id="compass-needle"></div>
+              </div>
+            </div>
+            <div class="heading-badge" id="compass-heading-text">HEADING: 324° NW [DRIFT VECTOR]</div>
+          </div>
+
+          <div class="proj-content">
+            <h3 class="proj-title">COMPASS CLI NAVIGATOR</h3>
+            <div class="proj-japanese-sub">ターミナル空間自律航行スクリプト</div>
+            
+            <p class="proj-desc">
+              A spatial filesystem navigator and contextual code search tool written in Python. Analyzes AST dependency graphs to plot directional vector paths through monolith codebases.
+            </p>
+
+            <div class="proj-tech-stack">
+              <span class="tech-tag">Python 3.11</span>
+              <span class="tech-tag">AST Parsing</span>
+              <span class="tech-tag">Rich CLI</span>
+              <span class="tech-tag">Graphlib</span>
+            </div>
+
+            <div class="proj-actions">
+              <button class="proj-btn btn-inspect" data-project="compass">
+                <span class="btn-icon">🔍</span> INSPECT CODE
+              </button>
+              <button class="proj-btn btn-run" data-project="compass">
+                <span class="btn-icon">▶</span> RUN DEMO
+              </button>
+            </div>
+          </div>
+
+          <div class="polaroid-caption-tape">
+            #PRJ-02 // COMPASS_NAV.PY
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 3: Void Memory Allocator -->
+      <article class="physics-item project-card" id="proj-allocator" data-mass="13" data-restitution="0.65">
+        <div class="proj-polaroid-frame">
+          <div class="proj-badge-row">
+            <span class="proj-category">SYSTEMS // BARE METAL</span>
+            <span class="proj-status pulse-yellow">● OPTIMIZED</span>
+          </div>
+
+          <div class="proj-visual-box visual-allocator">
+            <div class="memory-grid">
+              <span class="m-block full"></span>
+              <span class="m-block full"></span>
+              <span class="m-block empty"></span>
+              <span class="m-block full"></span>
+              <span class="m-block free"></span>
+              <span class="m-block full"></span>
+              <span class="m-block full"></span>
+              <span class="m-block empty"></span>
+              <span class="m-block full"></span>
+              <span class="m-block full"></span>
+              <span class="m-block free"></span>
+              <span class="m-block full"></span>
+            </div>
+            <div class="alloc-stats">FRAGMENTATION: 4.2% | POOL: 64MB</div>
+          </div>
+
+          <div class="proj-content">
+            <h3 class="proj-title">VOID ALLOCATOR (SLAB)</h3>
+            <div class="proj-japanese-sub">高速スラブ型メモリマネージャー</div>
+            
+            <p class="proj-desc">
+              Deterministic constant-time slab memory allocator with buddy allocation fallback for real-time physics simulations and audio processing buffers.
+            </p>
+
+            <div class="proj-tech-stack">
+              <span class="tech-tag">C99</span>
+              <span class="tech-tag">Memory Pools</span>
+              <span class="tech-tag">Cache Line Alignment</span>
+              <span class="tech-tag">Bitmasks</span>
+            </div>
+
+            <div class="proj-actions">
+              <button class="proj-btn btn-inspect" data-project="allocator">
+                <span class="btn-icon">🔍</span> INSPECT CODE
+              </button>
+              <button class="proj-btn btn-run" data-project="allocator">
+                <span class="btn-icon">▶</span> RUN DEMO
+              </button>
+            </div>
+          </div>
+
+          <div class="polaroid-caption-tape">
+            #PRJ-03 // SLAB_ALLOC.C
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 4: Echo Radio Synth 104.5 -->
+      <article class="physics-item project-card" id="proj-synth" data-mass="13" data-restitution="0.65">
+        <div class="proj-polaroid-frame">
+          <div class="proj-badge-row">
+            <span class="proj-category">AUDIO &amp; CREATIVE // WEBAUDIO</span>
+            <span class="proj-status pulse-red">● BROADCAST</span>
+          </div>
+
+          <div class="proj-visual-box visual-synth">
+            <canvas id="mini-oscilloscope" width="220" height="70"></canvas>
+            <div class="synth-dial-readout">FREQ: 104.5 MHz // AMBIENT RESONANCE</div>
+          </div>
+
+          <div class="proj-content">
+            <h3 class="proj-title">ECHO RADIO 104.5</h3>
+            <div class="proj-japanese-sub">ウェブオーディオ環境音ジェネレーター</div>
+            
+            <p class="proj-desc">
+              Generative ambient synthesizer simulating FM tape flutter, pentatonic wind chimes, and lo-fi radio transmission waves inspired by the Sonny Boy original soundtrack.
+            </p>
+
+            <div class="proj-tech-stack">
+              <span class="tech-tag">Web Audio API</span>
+              <span class="tech-tag">Canvas 2D</span>
+              <span class="tech-tag">Biquad Filters</span>
+              <span class="tech-tag">DSP Nodes</span>
+            </div>
+
+            <div class="proj-actions">
+              <button class="proj-btn btn-inspect" data-project="synth">
+                <span class="btn-icon">🔍</span> INSPECT CODE
+              </button>
+              <button class="proj-btn btn-run" data-project="synth">
+                <span class="btn-icon">▶</span> RUN DEMO
+              </button>
+            </div>
+          </div>
+
+          <div class="polaroid-caption-tape">
+            #PRJ-04 // ECHO_SYNTH.JS
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ========================================================
+         SECTION 4: SIGNALING HOME (THE CONTACT TERMINAL)
+         ======================================================== -->
+    <section class="dimension-section section-contact" id="section-contact">
+      
+      <div class="section-badge-stamp">
+        <span class="stamp-box">ZONE 04</span>
+        <h2>SIGNALING HOME // 送信ターミナル</h2>
+        <p class="section-instruction">Transmit an encrypted packet across dimensions or tether directly via communication wires.</p>
+      </div>
+
+      <!-- Transmission Console Form (Physics Active) -->
+      <div class="physics-item transmission-console" id="contact-terminal" data-mass="15" data-restitution="0.55">
+        <div class="console-top-plate">
+          <div class="beacon-led"></div>
+          <span class="plate-title">DIMENSION TRANSMITTER // FREQ: 433.92 MHz</span>
+          <span class="channel-readout">CH: REHAN-DIRECT</span>
+        </div>
+
+        <form id="transmitter-form" class="transmitter-form" onsubmit="return false;">
+          <div class="form-row">
+            <label for="sender-callsign" class="field-label">
+              <span class="label-idx">[01]</span> CALLSIGN // YOUR NAME / ORG:
+            </label>
+            <input 
+              type="text" 
+              id="sender-callsign" 
+              class="sketch-input" 
+              placeholder="e.g., Nagara / Mizuho / Google Recruiter" 
+              required
+              autocomplete="name"
+            >
+          </div>
+
+          <div class="form-row">
+            <label for="sender-channel" class="field-label">
+              <span class="label-idx">[02]</span> RETURN WIRE // EMAIL / COORD:
+            </label>
+            <input 
+              type="email" 
+              id="sender-channel" 
+              class="sketch-input" 
+              placeholder="e.g., student@parallel-dimension.io" 
+              required
+              autocomplete="email"
+            >
+          </div>
+
+          <div class="form-row">
+            <label for="sender-message" class="field-label">
+              <span class="label-idx">[03]</span> WIRE TRANSMISSION // MESSAGE PACKET:
+            </label>
+            <textarea 
+              id="sender-message" 
+              class="sketch-input sketch-textarea" 
+              rows="4" 
+              placeholder="Transmit job opportunity, project inquiry, or greetings from Earth..." 
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-footer">
+            <div class="signal-strength-meter">
+              <span class="meter-label">SIGNAL:</span>
+              <div class="bars">
+                <span class="bar active"></span>
+                <span class="bar active"></span>
+                <span class="bar active"></span>
+                <span class="bar active"></span>
+              </div>
+            </div>
+
+            <button type="submit" id="btn-transmit" class="transmit-button">
+              <span class="btn-radar-icon">📡</span>
+              <span class="btn-label">TRANSMIT PACKET // 送信</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Live Transmission Terminal Log Screen -->
+        <div class="transmission-status-log font-mono" id="transmission-log">
+          <div class="log-line">> WAITING FOR USER INPUT TO MODULATE CARRIER WAVE...</div>
+        </div>
+      </div>
+
+      <!-- Social Tether Pins (Physics-active anchors connected by live dynamic wires) -->
+      <div class="social-wire-cluster">
+        
+        <!-- GitHub Pin -->
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="physics-item wire-pin pin-github" id="pin-github" data-mass="6" title="GitHub Profile">
+          <div class="pin-head"></div>
+          <svg class="pin-svg" viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span class="pin-text">GITHUB // @rehan</span>
+        </a>
+
+        <!-- LinkedIn Pin -->
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="physics-item wire-pin pin-linkedin" id="pin-linkedin" data-mass="6" title="LinkedIn Network">
+          <div class="pin-head"></div>
+          <svg class="pin-svg" viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+          <span class="pin-text">LINKEDIN // REHAN</span>
+        </a>
+
+        <!-- Direct Email Pin -->
+        <a href="mailto:rehan@example.com" class="physics-item wire-pin pin-email" id="pin-email" data-mass="6" title="Direct Electronic Mail">
+          <div class="pin-head"></div>
+          <svg class="pin-svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <span class="pin-text">DIRECT WIRE // EMAIL</span>
+        </a>
+
+      </div>
+
+    </section>
+
+    <!-- Footer Copyright Stamp -->
+    <footer class="anime-footer">
+      <div class="footer-paper-badge">
+        <span class="kanji-sign">漂流ログ・完了</span>
+        <span>MOHAMMAD REHAN © 2026 // SONNY BOY TRIBUTE PORTFOLIO</span>
+        <span class="engine-badge">PHYSICS: MATTER.JS • ART: EGUCHI &amp; NATSUME INSPIRED</span>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ========================================================
+       MODALS: CODE INSPECTOR & LIVE DEMO RUNNER
+       ======================================================== -->
+
+  <!-- Interactive Project Modal -->
+  <div class="modal-backdrop" id="project-modal" aria-hidden="true">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-label" id="modal-project-badge">PRJ // INSPECTION</span>
+          <h3 class="modal-title" id="modal-project-title">DIMENSIONAL ROUTER</h3>
+        </div>
+        <div class="modal-controls">
+          <button class="modal-tab-btn active" id="modal-tab-code">CODE INSPECT</button>
+          <button class="modal-tab-btn" id="modal-tab-run">LIVE EXECUTION</button>
+          <button class="modal-close-btn" id="modal-close-btn" title="Close Modal">✕</button>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <!-- Tab 1: Code View with Line Numbers -->
+        <div class="modal-tab-content active" id="tab-content-code">
+          <div class="code-viewer-wrap font-mono">
+            <div class="code-file-bar">
+              <span class="file-icon">📁</span>
+              <span id="code-file-name">src/router/engine.cpp</span>
+              <span class="file-tag">C++20 STRICT</span>
+            </div>
+            <pre class="code-pre"><code id="code-snippet-box"></code></pre>
+          </div>
+        </div>
+
+        <!-- Tab 2: Live Interactive Execution Demo -->
+        <div class="modal-tab-content" id="tab-content-run">
+          <div class="demo-runner-wrap" id="demo-runner-area">
+            <!-- Dynamically populated per project -->
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer font-mono">
+        <span class="modal-status" id="modal-footer-status">SYSTEM READY: 0 ERRORS</span>
+        <button class="action-btn btn-secondary" id="modal-action-copy">COPY SNIPPET</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Student Resume Dossier Modal -->
+  <div class="modal-backdrop" id="resume-modal" aria-hidden="true">
+    <div class="modal-window resume-window">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-label">STUDENT DOSSIER // OFFICIAL TRANSCRIPT</span>
+          <h3 class="modal-title">MOHAMMAD REHAN - CURRICULUM VITAE</h3>
+        </div>
+        <button class="modal-close-btn" id="resume-close-btn" title="Close Modal">✕</button>
+      </div>
+      <div class="modal-body resume-body">
+        <div class="resume-sheet">
+          <div class="resume-top-banner">
+            <div>
+              <h2 class="res-name">MOHAMMAD REHAN</h2>
+              <p class="res-sub">Software Systems Engineer &bull; Full-Stack Builder</p>
+              <p class="font-mono res-contact">rehan@example.com &bull; github.com/rehan &bull; linkedin.com/in/rehan</p>
+            </div>
+            <div class="res-stamp">EXILED CLASS 3-A</div>
+          </div>
+
+          <hr class="res-divider">
+
+          <div class="res-section">
+            <h4 class="res-heading">EDUCATION &amp; DISCIPLINE</h4>
+            <div class="res-entry">
+              <div class="res-line-top">
+                <strong>B.S. in Computer Science &amp; Engineering</strong>
+                <span class="res-date">2021 &ndash; 2025</span>
+              </div>
+              <div class="res-desc">Core coursework: Systems Architecture, Distributed Operating Systems, Algorithms &amp; Data Structures, Database Internals.</div>
+            </div>
+          </div>
+
+          <div class="res-section">
+            <h4 class="res-heading">ENGINEERING EXPERIENCE</h4>
+            <div class="res-entry">
+              <div class="res-line-top">
+                <strong>Software Engineering Intern // Distributed Systems</strong>
+                <span class="res-date">Summer 2024</span>
+              </div>
+              <ul class="res-bullets">
+                <li>Designed an asynchronous task queue in C++ reducing median packet turnaround latency by 38%.</li>
+                <li>Engineered telemetry pipelines handling 50k+ events/sec with Prometheus and Grafana dashboards.</li>
+                <li>Automated deployment environments with Docker and Linux systemd services.</li>
+              </ul>
+            </div>
+            <div class="res-entry">
+              <div class="res-line-top">
+                <strong>Full-Stack Developer // Open Source Project Lead</strong>
+                <span class="res-date">2023 &ndash; Present</span>
+              </div>
+              <ul class="res-bullets">
+                <li>Authored Python developer CLI tools adopted by 1,200+ active GitHub stargazers.</li>
+                <li>Created high-frame-rate Canvas/WebGL rendering pipelines with seamless zero-overhead physics integration.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="res-section">
+            <h4 class="res-heading">TECHNICAL MASTERY</h4>
+            <div class="res-skills-list font-mono">
+              <div><strong>Languages:</strong> C, C++20, Python 3.11, JavaScript (ES2024), TypeScript, SQL, Bash</div>
+              <div><strong>Frameworks/Libs:</strong> React, Node.js, Fastify, Flask, Matter.js, Web Audio API</div>
+              <div><strong>Infrastructure:</strong> Docker, Git, Linux (Ubuntu/Arch), PostgreSQL, Redis, Nginx</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="action-btn btn-primary" id="btn-print-resume">
+          <span>🖨️</span> PRINT / SAVE AS PDF
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Cursor Ring & Crosshair (Indie Anime Aesthetics) -->
+  <div class="custom-cursor" id="custom-cursor" aria-hidden="true">
+    <div class="cursor-crosshair"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- Main JavaScript Logic -->
+  <script src="script.js"></script>
+
+  <!-- Botpress Webchat Embed -->
+  <script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2026/10/06/10/20261006104548-PZQ3CFID.js" defer></script>
+</body>
 </html>
+
